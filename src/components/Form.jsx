@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addArticle } from "../actions/index";
+
 function mapDispatchToProps(dispatch) {
   return {
     addArticle: article => dispatch(addArticle(article))
@@ -12,18 +13,19 @@ class ConnectedForm extends Component {
     this.state = {
       title: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
   }
-  handleSubmit(event) {
+
+  handleSubmit = (event) => {
     event.preventDefault();
     const { title } = this.state;
     this.props.addArticle({ title });
     this.setState({ title: "" });
   }
+
+  
   render() {
     const { title } = this.state;
     return (

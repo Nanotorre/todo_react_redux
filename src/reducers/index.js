@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../constants/action_types";
+import { ADD_ARTICLE, REMOVE_ARTICLE } from "../constants/action_types";
 const initialState = {
   articles: []
 };
@@ -7,6 +7,17 @@ function rootReducer(state = initialState, action) {
     return Object.assign({}, state, {
       articles: state.articles.concat(action.payload)
     });
+  }
+  if (action.type === REMOVE_ARTICLE) {
+    let articlesModified = [...state.articles]
+    articlesModified.splice(action.payload, 1)
+    console.log("reducer", articlesModified)
+    return Object.assign({}, state, {
+      articles: articlesModified
+    })
+  
+  
+   
   }
   return state;
 }
